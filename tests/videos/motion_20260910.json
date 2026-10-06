@@ -1,0 +1,106 @@
+{
+  "name": "Movimientos de una persona en un cuarto",
+  "video_name": "WIN_20260910_21_03_42_Pro.mp4",
+  "sha256": "455af6eff19f69233a17221021ee2c792b1a21b45953bd0d322959166ad4af32",
+  "frames": 958,
+  "width": 1280,
+  "height": 720,
+  "start_time_utc": "2026-09-11T12:00:00+00:00",
+  "line": {
+    "p1": [
+      0.35,
+      0.98
+    ],
+    "p2": [
+      0.35,
+      0.28
+    ],
+    "entry_to": "positive",
+    "margin_px": 15,
+    "confirmation_frames": 3,
+    "cooldown_seconds": 0.5,
+    "anchor": "center",
+    "roi": null
+  },
+  "image_size": 640,
+  "expected": {
+    "unique_visitors_today": 1,
+    "counted_entries_today": 1,
+    "counted_exits_today": 1,
+    "entries_today": 7,
+    "exits_today": 6
+  },
+  "scenes": [
+    {
+      "start": 0,
+      "end": 2.44,
+      "name": "Aproximación y giro de frente a perfil"
+    },
+    {
+      "start": 2.44,
+      "end": 5.32,
+      "name": "Primer recorrido lateral y vuelta"
+    },
+    {
+      "start": 5.32,
+      "end": 7.23,
+      "name": "Retorno lateral hacia el interior"
+    },
+    {
+      "start": 7.23,
+      "end": 10.34,
+      "name": "Cuerpo frontal y desplazamiento inverso"
+    },
+    {
+      "start": 10.34,
+      "end": 12.55,
+      "name": "Giro y cuerpo parcialmente fuera de cuadro"
+    },
+    {
+      "start": 12.55,
+      "end": 16.49,
+      "name": "Recorrido frontal, perfil y comienzo de giro de espalda"
+    },
+    {
+      "start": 16.49,
+      "end": 18.4,
+      "name": "Recorrido de espaldas"
+    },
+    {
+      "start": 18.4,
+      "end": 21.28,
+      "name": "Espalda, perfil y vuelta"
+    },
+    {
+      "start": 21.28,
+      "end": 23.02,
+      "name": "Desplazamiento lateral rápido"
+    },
+    {
+      "start": 23.02,
+      "end": 26.09,
+      "name": "Cuerpo frontal y retorno"
+    },
+    {
+      "start": 26.09,
+      "end": 27.57,
+      "name": "Cambio de sentido"
+    },
+    {
+      "start": 27.57,
+      "end": 30.44,
+      "name": "Perfil y giro hacia la cámara"
+    },
+    {
+      "start": 30.44,
+      "end": 32.075479,
+      "name": "Aproximación a cámara y cuerpo recortado"
+    }
+  ],
+  "limitations": [
+    "Solo una persona visible; no contiene negativos de personas distintas.",
+    "Los cruces se miden sobre una línea virtual de prueba, no como entradas reales a una tienda.",
+    "La cámara del video no reproduce la posición elevada definitiva.",
+    "Los tramos revisan el mismo video; no son un conjunto independiente de validación poblacional."
+  ]
+}

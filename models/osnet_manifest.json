@@ -1,0 +1,31 @@
+{
+  "model": "osnet_x0_25_msmt17.onnx",
+  "sha256": "dac8c3c46937531dfeff0149c5775db88e552fa97728e69cae567fbf6e82ec39",
+  "bytes": 891011,
+  "architecture": "OSNet x0.25",
+  "embedding_dimensions": 512,
+  "input_shape": [
+    1,
+    3,
+    256,
+    128
+  ],
+  "color": "RGB",
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "source": "https://kaiyangzhou.github.io/deep-person-reid/MODEL_ZOO.html",
+  "checkpoint_url": "https://drive.google.com/file/d/1Kkx2zW89jq_NETu4u42CFZTMVD5Hwm6e/view",
+  "checkpoint_sha256": "cf55163d78fc44c62c82f85ab62d39f10438679b5abe8c698ae08cfa84aa6e18",
+  "source_code_sha256": "c7c1c29187d6330f859c91da229271531920464c7011aec13842a086b2263cae",
+  "trained_on": "MSMT17 combineall, author-provided pretrained checkpoint",
+  "export": "PyTorch 2.5.1, ONNX opset 12, evaluation mode, classifier excluded by forward",
+  "fine_tuned_on_user_video": false
+}

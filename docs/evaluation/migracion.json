@@ -1,0 +1,11 @@
+{
+  "events_preserved": 30,
+  "original_counters_preserved": true,
+  "integrity": "ok",
+  "foreign_keys": "ok",
+  "backups": [
+    "migration.sqlite3.before-visitors-v2.bak",
+    "migration.sqlite3.before-hybrid-v3.bak",
+    "migration.sqlite3.before-direction-counts-v2.1.bak"
+  ]
+}
