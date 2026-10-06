@@ -1,0 +1,19 @@
+{
+  "settings_version": "0.0.8",
+  "datasets_dir": "C:\\Users\\datasets",
+  "weights_dir": "C:\\Users\\Yoensi\\weights",
+  "runs_dir": "C:\\Users\\Yoensi\\runs",
+  "uuid": "0cd1f0223862e10adb819a1f7db097fdc455ec745d859257d7175c00a9e259b3",
+  "sync": false,
+  "api_key": "",
+  "openai_api_key": "",
+  "clearml": true,
+  "comet": true,
+  "dvc": true,
+  "mlflow": true,
+  "raytune": true,
+  "tensorboard": false,
+  "wandb": false,
+  "vscode_msg": true,
+  "openvino_msg": true
+}

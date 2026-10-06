@@ -1,0 +1,3 @@
+-r requirements.txt
+# Picamera2/libcamera se instalan con apt, no con pip.
+# Ver README: venv con --system-site-packages y comprobación de ABI NumPy/OpenCV.

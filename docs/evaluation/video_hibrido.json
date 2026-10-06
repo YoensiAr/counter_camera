@@ -1,0 +1,386 @@
+{
+  "video_sha256": "455af6eff19f69233a17221021ee2c792b1a21b45953bd0d322959166ad4af32",
+  "frames": 958,
+  "fps": 29.89135522037854,
+  "width": 1280,
+  "height": 720,
+  "mode": "hybrid",
+  "face_disabled": false,
+  "face_until": null,
+  "models": {
+    "face": "sface-128-v1:0ba9fbfa01b5270c96627c4ef784da859931e02f04419c829e83484087c34e79",
+    "body": "osnet-512-v1:dac8c3c46937531dfeff0149c5775db88e552fa97728e69cae567fbf6e82ec39"
+  },
+  "samples": {
+    "face": 43,
+    "body": 107
+  },
+  "inference_calls": {
+    "face": 107,
+    "body": 107
+  },
+  "processed_seconds": 43.8,
+  "tracker_ids_seen": 1,
+  "stats": {
+    "entries_today": 7,
+    "exits_today": 6,
+    "entries": 7,
+    "exits": 6,
+    "occupancy": 1,
+    "inconsistent": false,
+    "occupancy_uncertain": false,
+    "occupancy_reason": "",
+    "date": "2026-09-11",
+    "timezone": "America/Santo_Domingo",
+    "reset_at": null,
+    "unique_visitors_today": 1,
+    "returning_entries_today": 6,
+    "unverified_entries_today": 0,
+    "pending_entries_today": 0,
+    "unchecked_entries_today": 0,
+    "counted_entries_today": 1,
+    "counted_exits_today": 1,
+    "returning_exits_today": 5,
+    "unverified_exits_today": 0,
+    "pending_exits_today": 0,
+    "unchecked_exits_today": 0
+  },
+  "crossings": [
+    {
+      "seconds": 2.442,
+      "direction": "entry",
+      "status": "new",
+      "reason": "first_entry",
+      "evidence": "face",
+      "counted": 1
+    },
+    {
+      "seconds": 5.319,
+      "direction": "exit",
+      "status": "new",
+      "reason": "first_exit",
+      "evidence": "face",
+      "counted": 1
+    },
+    {
+      "seconds": 7.226,
+      "direction": "entry",
+      "status": "returning",
+      "reason": "continuity_match",
+      "evidence": "continuity",
+      "counted": 0
+    },
+    {
+      "seconds": 10.337,
+      "direction": "exit",
+      "status": "returning",
+      "reason": "continuity_match",
+      "evidence": "continuity",
+      "counted": 0
+    },
+    {
+      "seconds": 12.545,
+      "direction": "entry",
+      "status": "returning",
+      "reason": "face_match",
+      "evidence": "face",
+      "counted": 0
+    },
+    {
+      "seconds": 16.493,
+      "direction": "exit",
+      "status": "returning",
+      "reason": "face_match",
+      "evidence": "face",
+      "counted": 0
+    },
+    {
+      "seconds": 18.4,
+      "direction": "entry",
+      "status": "returning",
+      "reason": "continuity_match",
+      "evidence": "continuity",
+      "counted": 0
+    },
+    {
+      "seconds": 21.277,
+      "direction": "exit",
+      "status": "returning",
+      "reason": "continuity_match",
+      "evidence": "continuity",
+      "counted": 0
+    },
+    {
+      "seconds": 23.017,
+      "direction": "entry",
+      "status": "returning",
+      "reason": "continuity_match",
+      "evidence": "continuity",
+      "counted": 0
+    },
+    {
+      "seconds": 26.095,
+      "direction": "exit",
+      "status": "returning",
+      "reason": "face_match",
+      "evidence": "face",
+      "counted": 0
+    },
+    {
+      "seconds": 27.566,
+      "direction": "entry",
+      "status": "returning",
+      "reason": "continuity_match",
+      "evidence": "continuity",
+      "counted": 0
+    },
+    {
+      "seconds": 30.444,
+      "direction": "exit",
+      "status": "returning",
+      "reason": "face_match",
+      "evidence": "face",
+      "counted": 0
+    },
+    {
+      "seconds": 31.882,
+      "direction": "entry",
+      "status": "returning",
+      "reason": "continuity_match",
+      "evidence": "continuity",
+      "counted": 0
+    }
+  ],
+  "decisions": {
+    "new:face": 2,
+    "returning:continuity": 7,
+    "returning:face": 4
+  },
+  "scenes": [
+    {
+      "start": 0,
+      "end": 2.44,
+      "name": "Aproximación y giro de frente a perfil",
+      "frames_processed": 73,
+      "crossings": []
+    },
+    {
+      "start": 2.44,
+      "end": 5.32,
+      "name": "Primer recorrido lateral y vuelta",
+      "frames_processed": 87,
+      "crossings": [
+        {
+          "seconds": 2.442,
+          "direction": "entry",
+          "status": "new",
+          "reason": "first_entry",
+          "evidence": "face",
+          "counted": 1
+        },
+        {
+          "seconds": 5.319,
+          "direction": "exit",
+          "status": "new",
+          "reason": "first_exit",
+          "evidence": "face",
+          "counted": 1
+        }
+      ]
+    },
+    {
+      "start": 5.32,
+      "end": 7.23,
+      "name": "Retorno lateral hacia el interior",
+      "frames_processed": 57,
+      "crossings": [
+        {
+          "seconds": 7.226,
+          "direction": "entry",
+          "status": "returning",
+          "reason": "continuity_match",
+          "evidence": "continuity",
+          "counted": 0
+        }
+      ]
+    },
+    {
+      "start": 7.23,
+      "end": 10.34,
+      "name": "Cuerpo frontal y desplazamiento inverso",
+      "frames_processed": 93,
+      "crossings": [
+        {
+          "seconds": 10.337,
+          "direction": "exit",
+          "status": "returning",
+          "reason": "continuity_match",
+          "evidence": "continuity",
+          "counted": 0
+        }
+      ]
+    },
+    {
+      "start": 10.34,
+      "end": 12.55,
+      "name": "Giro y cuerpo parcialmente fuera de cuadro",
+      "frames_processed": 66,
+      "crossings": [
+        {
+          "seconds": 12.545,
+          "direction": "entry",
+          "status": "returning",
+          "reason": "face_match",
+          "evidence": "face",
+          "counted": 0
+        }
+      ]
+    },
+    {
+      "start": 12.55,
+      "end": 16.49,
+      "name": "Recorrido frontal, perfil y comienzo de giro de espalda",
+      "frames_processed": 117,
+      "crossings": []
+    },
+    {
+      "start": 16.49,
+      "end": 18.4,
+      "name": "Recorrido de espaldas",
+      "frames_processed": 58,
+      "crossings": [
+        {
+          "seconds": 16.493,
+          "direction": "exit",
+          "status": "returning",
+          "reason": "face_match",
+          "evidence": "face",
+          "counted": 0
+        }
+      ]
+    },
+    {
+      "start": 18.4,
+      "end": 21.28,
+      "name": "Espalda, perfil y vuelta",
+      "frames_processed": 86,
+      "crossings": [
+        {
+          "seconds": 18.4,
+          "direction": "entry",
+          "status": "returning",
+          "reason": "continuity_match",
+          "evidence": "continuity",
+          "counted": 0
+        },
+        {
+          "seconds": 21.277,
+          "direction": "exit",
+          "status": "returning",
+          "reason": "continuity_match",
+          "evidence": "continuity",
+          "counted": 0
+        }
+      ]
+    },
+    {
+      "start": 21.28,
+      "end": 23.02,
+      "name": "Desplazamiento lateral rápido",
+      "frames_processed": 52,
+      "crossings": [
+        {
+          "seconds": 23.017,
+          "direction": "entry",
+          "status": "returning",
+          "reason": "continuity_match",
+          "evidence": "continuity",
+          "counted": 0
+        }
+      ]
+    },
+    {
+      "start": 23.02,
+      "end": 26.09,
+      "name": "Cuerpo frontal y retorno",
+      "frames_processed": 91,
+      "crossings": []
+    },
+    {
+      "start": 26.09,
+      "end": 27.57,
+      "name": "Cambio de sentido",
+      "frames_processed": 45,
+      "crossings": [
+        {
+          "seconds": 26.095,
+          "direction": "exit",
+          "status": "returning",
+          "reason": "face_match",
+          "evidence": "face",
+          "counted": 0
+        },
+        {
+          "seconds": 27.566,
+          "direction": "entry",
+          "status": "returning",
+          "reason": "continuity_match",
+          "evidence": "continuity",
+          "counted": 0
+        }
+      ]
+    },
+    {
+      "start": 27.57,
+      "end": 30.44,
+      "name": "Perfil y giro hacia la cámara",
+      "frames_processed": 85,
+      "crossings": []
+    },
+    {
+      "start": 30.44,
+      "end": 32.075479,
+      "name": "Aproximación a cámara y cuerpo recortado",
+      "frames_processed": 48,
+      "crossings": [
+        {
+          "seconds": 30.444,
+          "direction": "exit",
+          "status": "returning",
+          "reason": "face_match",
+          "evidence": "face",
+          "counted": 0
+        },
+        {
+          "seconds": 31.882,
+          "direction": "entry",
+          "status": "returning",
+          "reason": "continuity_match",
+          "evidence": "continuity",
+          "counted": 0
+        }
+      ]
+    }
+  ],
+  "labels_at_end": [
+    "seguimiento"
+  ],
+  "errors": [],
+  "expected_mismatches": {},
+  "passed": true,
+  "fine_tuned_on_video": false,
+  "evaluation": "full_video_actual_models",
+  "limitations": [
+    "Solo una persona visible; no contiene negativos de personas distintas.",
+    "Los cruces se miden sobre una línea virtual de prueba, no como entradas reales a una tienda.",
+    "La cámara del video no reproduce la posición elevada definitiva.",
+    "Los tramos revisan el mismo video; no son un conjunto independiente de validación poblacional."
+  ],
+  "versions": {
+    "ultralytics": "8.4.146",
+    "torch": "2.5.1+cpu",
+    "numpy": "2.5.2",
+    "opencv-python": "4.11.0.86",
+    "cryptography": "48.0.1"
+  }
+}

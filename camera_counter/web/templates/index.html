@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf }}">
+  <title>Camera Counter · Flujo de visitas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Camera Counter, inicio"><span class="brand-mark">cc</span> camera counter</a>
+    <span class="top-label">FLUJO DE VISITAS <span class="local-tag">LOCAL</span></span>
+  </header>
+  <main>
+    <div class="page-title"><div><p class="eyebrow">SUPERVISIÓN DEL ACCESO</p><h1>Cada visita cuenta.</h1>
+      <p class="subtitle">Visitantes únicos, reingresos y ocupación de tu establecimiento.</p></div>
+      <div class="date-block"><span id="today">Conectando…</span><small id="timezone"></small></div>
+    </div>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div id="error" class="error" role="alert" hidden></div>
+    <section class="metrics" aria-label="Contadores">
+      <article class="metric occupancy"><div class="metric-label">VISITANTES ÚNICOS DE HOY <span class="metric-symbol">◉</span></div>
+        <div class="number" id="unique-visitors">—</div><p id="unique-caption">Primeras entradas verificadas del día</p></article>
+      <article class="metric"><div class="metric-label">REINGRESOS DE HOY <span class="metric-symbol">↺</span></div>
+        <div class="number" id="returning-visitors">—</div><p>Ya contados dentro del plazo configurado</p></article>
+      <article class="metric"><div class="metric-label">SIN VERIFICAR <span class="metric-symbol">?</span></div>
+        <div class="number" id="unverified-visitors">—</div><p>Entradas y salidas sin evidencia suficiente</p></article>
+      <article class="metric"><div class="metric-label">ENTRADAS DE HOY <span class="metric-symbol">↙</span></div>
+        <div class="number" id="entries">—</div><p id="entries-caption">Una entrada por persona dentro del plazo</p></article>
+      <article class="metric"><div class="metric-label">SALIDAS DE HOY <span class="metric-symbol">↗</span></div>
+        <div class="number" id="exits">—</div><p id="exits-caption">Una salida por persona dentro del plazo</p></article>
+      <article class="metric"><div class="metric-label">PERSONAS DENTRO <span class="metric-symbol">◉</span></div>
+        <div class="number" id="occupancy">—</div><p>Ocupación estimada en este momento</p></article>
+    </section>
+    <p class="visitor-status" id="visitor-status" role="status">Preparando la verificación de visitantes…</p>
+    <div class="workspace">
+      <section class="panel live-panel" aria-labelledby="live-title">
+        <div class="panel-header"><div><h2 id="live-title">Vista del acceso</h2><span id="camera-name" class="muted">Cámara principal</span></div>
+          <span class="status-pill" id="camera-status">Iniciando</span></div>
+        <div class="browser-camera-bar" id="browser-camera-bar" hidden>
+          <button id="start-browser-camera" type="button" class="primary">Iniciar cámara de este dispositivo</button>
+          <button id="stop-browser-camera" type="button" class="quiet" hidden>Detener cámara</button>
+          <select id="browser-camera-select" aria-label="Seleccionar cámara" hidden></select>
+          <span id="browser-camera-note" class="muted">La cámara se procesa en el servidor. Requiere HTTPS fuera de localhost.</span>
+        </div>
+        <video id="browser-camera-source" autoplay muted playsinline hidden></video>
+        <canvas id="browser-upload-canvas" hidden></canvas>
+        <div class="video-stage" id="video-stage">
+          <img id="video" src="/video_feed" alt="Video procesado con línea de conteo y seguimiento de personas">
+          <canvas id="line-canvas" aria-label="Selecciona dos puntos para definir la línea"></canvas>
+        </div>
+        <div class="video-footer"><span id="fps">— FPS</span><span id="latency">— ms</span>
+          <span id="record-label">Grabación desactivada</span></div>
+        <div class="video-actions"><button id="draw-line" type="button">Dibujar línea</button>
+          <button id="draw-roi" type="button" class="quiet">Delimitar acceso</button>
+          <button id="clear-roi" type="button" class="quiet">Quitar zona</button>
+          <button id="toggle-recording" type="button" class="quiet">Activar grabación</button></div>
+        <p class="helper">La flecha indica la entrada. El punto amarillo sobre cada cuerpo es el que debe cruzar la franja. Delimita el acceso para excluir movimientos en el resto del cuarto.</p>
+      </section>
+      <section class="panel setup-panel" aria-labelledby="setup-title">
+        <div class="panel-header"><div><p class="eyebrow">CONFIGURACIÓN</p><h2 id="setup-title">Línea de conteo</h2></div></div>
+        <form id="line-form">
+          <p class="helper">Dibuja sobre el video o escribe coordenadas entre 0 y 1.</p>
+          <div class="coordinates"><fieldset><legend>Punto inicial</legend><label>X<input name="p1x" type="number" min="0" max="1" step="0.001" required></label><label>Y<input name="p1y" type="number" min="0" max="1" step="0.001" required></label></fieldset>
+            <fieldset><legend>Punto final</legend><label>X<input name="p2x" type="number" min="0" max="1" step="0.001" required></label><label>Y<input name="p2y" type="number" min="0" max="1" step="0.001" required></label></fieldset></div>
+          <label>Dirección de entrada<select name="entry_to"><option value="positive">Hacia el lado positivo</option><option value="negative">Hacia el lado negativo</option></select></label>
+          <label>Punto que cruza la línea<select name="anchor"><option value="center">Centro del cuerpo · Vista desde arriba</option><option value="feet">Pies · Si se ven completos</option><option value="head">Parte superior del cuerpo</option></select></label>
+          <p class="helper compact">Línea horizontal de izquierda a derecha: positivo es abajo. Línea vertical de arriba a abajo: positivo es izquierda.</p>
+          <div class="two-fields"><label>Tolerancia (px)<input name="margin_px" type="number" min="0" max="500" step="1" required></label>
+            <label>Confirmación (frames)<input name="confirmation_frames" type="number" min="2" max="16" step="1" required></label></div>
+          <label>Pausa en la misma dirección (s)<input name="cooldown_seconds" type="number" min="0" max="3600" step="0.1" required></label>
+          <button type="submit" class="primary wide">Guardar configuración</button>
+        </form>
+        <div class="system-info"><div><span>Modelo</span><strong id="model">Iniciando…</strong></div><div><span>Seguimiento</span><strong id="tracker">—</strong></div>
+          <div><span>Memoria</span><strong id="memory">—</strong></div><div><span>Frames descartados</span><strong id="dropped">—</strong></div></div>
+      </section>
+    </div>
+    <section class="panel visitors-panel" aria-labelledby="visitors-title">
+      <div class="panel-header"><div><p class="eyebrow">VISITANTES ÚNICOS</p><h2 id="visitors-title">¿Cuándo volver a contar a una persona?</h2></div></div>
+      <form id="visitors-form" class="visitor-settings">
+        <label class="check-label"><input name="enabled" type="checkbox"> Evitar repetir entradas y salidas</label>
+        <label>Plazo<select name="window"><option value="calendar_day">Una vez por día (hasta medianoche)</option><option value="hours">Un número de horas desde el primer cruce verificado</option></select></label>
+        <label>Horas<input name="window_hours" type="number" min="1" max="168" step="0.5" value="24" required></label>
+        <button type="submit" class="primary">Guardar plazo</button>
+      </form>
+      <p class="helper">Cada identidad estimada suma una entrada y una salida por plazo. En modo combinado se usan rostro, varias vistas del cuerpo y continuidad del recorrido. Una salida de espaldas puede verificarse sin ver la cara. La ropa parecida, las oclusiones y los cambios de apariencia pueden producir dudas o errores; los casos sin evidencia suficiente quedan sin verificar. Las referencias se cifran y caducan en este equipo.</p>
+      <div class="visitor-management"><span id="active-references">0 referencias vigentes</span><button id="forget-visitors" type="button" class="danger-link">Borrar referencias de visitantes</button></div>
+    </section>
+    <section class="panel history-panel" aria-labelledby="history-title">
+      <div class="panel-header history-header"><div><p class="eyebrow">HISTORIAL</p><h2 id="history-title">Actividad del establecimiento</h2></div>
+        <a id="csv-link" class="button quiet" href="/reports/summary.csv">Descargar totales CSV ↓</a></div>
+      <form id="history-form" class="filters"><label>Desde<input id="start-date" type="date" required></label><label>Hasta<input id="end-date" type="date" required></label>
+        <label>Agrupar<select id="group"><option value="hour">Por hora</option><option value="day">Por día</option></select></label><button type="submit">Consultar</button></form>
+      <div class="table-wrap"><table><thead><tr><th>Periodo</th><th>Únicos</th><th>Reingresos</th><th>Sin verificar</th><th>Entradas</th><th>Salidas</th><th>Flujo</th></tr></thead><tbody id="history-body"><tr><td colspan="7" class="empty">Cargando historial…</td></tr></tbody></table></div>
+      <p class="helper">Entradas y salidas muestran los mismos totales sin repeticiones que el panel. Reiniciar la ocupación conserva esos totales. “Sin verificar” incluye cruces pendientes, antiguos o hechos con la verificación desactivada. <a id="events-csv-link" href="/reports/events.csv">Descargar detalle de todos los cruces</a>: la columna “suma_al_contador” indica cuáles sumaron.</p>
+    </section>
+    <footer><p>Referencias temporales de rostro y cuerpo · Procesamiento en servidor · Cámara desde navegador</p><button id="reset-button" type="button" class="danger-link">Reiniciar ocupación</button></footer>
+  </main>
+  <dialog id="reset-dialog"><h2>¿Reiniciar la ocupación?</h2><p>“Personas dentro” volverá a cero. Las entradas y salidas contadas hoy, el historial y las referencias de rostro y cuerpo se conservarán para evitar volver a contar a la misma persona.</p><p>Hazlo cuando el establecimiento esté vacío.</p><div class="dialog-actions"><button id="cancel-reset" type="button">Cancelar</button><button id="confirm-reset" class="danger" type="button">Reiniciar</button></div></dialog>
+  <dialog id="forget-dialog"><h2>¿Borrar las referencias de visitantes?</h2><p>Se olvidarán los rostros y las vistas corporales guardadas. Los totales históricos se conservan, pero alguien que regrese podrá contarse otra vez como visitante nuevo.</p><div class="dialog-actions"><button id="cancel-forget" type="button">Cancelar</button><button id="confirm-forget" class="danger" type="button">Borrar referencias</button></div></dialog>
+</body>
+</html>

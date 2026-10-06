@@ -1,0 +1,5 @@
+-r requirements-base.txt
+# API de ByteTrack/BoT-SORT validada con esta versión.
+ultralytics==8.4.146
+lap>=0.5.12,<0.6
+opencv-python>=4.10,<=4.11.0.86

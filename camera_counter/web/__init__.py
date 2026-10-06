@@ -1,0 +1,1 @@
+"""Panel local de supervisión."""
